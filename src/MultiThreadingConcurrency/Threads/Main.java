@@ -14,6 +14,8 @@ public class Main {
         thread1.start();
         thread3.run();
         System.out.println("ending");
+        System.out.println("ending");
+        System.out.println("ending");
 
 
     }
