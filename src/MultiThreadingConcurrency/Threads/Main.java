@@ -2,6 +2,7 @@ package src.MultiThreadingConcurrency.Threads;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
+
         System.out.println("starting");
 //        Thread.currentThread().wait(8);
         Thread1 thread1=new Thread1("thread1");
