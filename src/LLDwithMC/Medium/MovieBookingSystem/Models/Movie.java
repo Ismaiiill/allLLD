@@ -4,9 +4,9 @@ public class Movie {
     private Long id;
     private String title;
     private String description;
-    private String duration;
+    private int duration;
 
-    public Movie(Long id, String title, String description, String duration) {
+    public Movie(Long id, String title, String description, int duration) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -37,11 +37,11 @@ public class Movie {
         this.description = description;
     }
 
-    public String getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 }
