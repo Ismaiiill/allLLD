@@ -19,7 +19,7 @@ public class MovieBookingService {
 
     //update
 
-    remove
+//    remove
 
 
 
