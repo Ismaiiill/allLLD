@@ -20,4 +20,6 @@ public class Floor {
             System.out.println();
         }
     }
+
+    //find avaliable spots
 }
