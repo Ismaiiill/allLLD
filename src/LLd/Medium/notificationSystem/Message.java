@@ -13,7 +13,15 @@ public class Message {
         this.content=content;
     }
     public String getMsgId(){
+        return msgId;
+    }
 
+    public String getSubject(){
+        return subject;
+    }
+
+    public String getContent(){
+        return content;
     }
 
     @Override
