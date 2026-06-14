@@ -2,17 +2,13 @@ package src.MultiThreadingConcurrency.concurrency.Practice;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-
-        WaitandNotify waitandNotify=new WaitandNotify(5);
+    /*
+        Stack stack=new Stack(5);
         Thread thread1=new Thread(
                 ()->{
                     int counter=0;
                     while(++counter<10) {
-                        try {
-                            System.out.println("Pushed"+ waitandNotify.addd(100));
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
+                        System.out.println("Pushed"+ stack.push(100));
                     }
                 }
         );
@@ -22,15 +18,33 @@ public class Main {
                 ()->{
                     int counter=0;
                     while(++counter<10) {
-                        try {
-                            System.out.println("Popped"+ waitandNotify.remove());
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
+                        System.out.println("Popped"+ stack.pop());
                     }
                 }
         );
 
         thread2.start();
+
+     */
+        ProducerAndConsumer producerAndConsumer=new ProducerAndConsumer(5,0);
+        Thread produce=new Thread(()->{
+            try {
+                producerAndConsumer.produce();
+            }catch (InterruptedException e){
+                throw new RuntimeException();
+            }
+
+        });
+
+        Thread consumer=new Thread(()->{
+            try {
+                producerAndConsumer.consumer();
+            }catch (InterruptedException e){
+                throw new RuntimeException();
+            }
+        });
+
+        produce.start();
+        consumer.start();
     }
 }
