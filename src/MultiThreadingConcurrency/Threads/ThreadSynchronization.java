@@ -1,24 +1,21 @@
 package src.MultiThreadingConcurrency.Threads;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class ThreadSynchronization {
-    private static int counter=0;
+    private static int counter1=0;
+    private static int counter2=0;
     private static Object obj=new Object();
     public static void main(String[] args) {
 
         Thread t1=new Thread(()->{
             for(int i=0;i<20000;i++) {
-                synchronized (obj){
-                    counter++;
-                }
+                increment1();
 
             }
         });
         Thread t2=new Thread(()->{
             for(int i=0;i<20000;i++) {
                 synchronized (obj){
-                    counter++;
+                    increment2();
                 }
             }
         });
@@ -30,9 +27,16 @@ public class ThreadSynchronization {
         }catch (Exception e){
             throw new RuntimeException();
         }
-        System.out.println(counter);
+        System.out.println(counter1+ " === "+counter2);
 
 
+    }
+
+    private static synchronized void increment1(){
+        counter1++;
+    }
+    private static synchronized void increment2(){
+        counter2++;
     }
 }
 
