@@ -1,6 +1,7 @@
 package src.MultiThreadingConcurrency.concurrency.ExecutorSercvice;
 
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /*
@@ -18,6 +19,12 @@ import java.util.concurrent.ThreadPoolExecutor;
      */
 
 public class ExecutorServiceImpl {
-    ExecutorService executorService= new ThreadPoolExecutor();
+    public static void main(String[] args) {
+        ExecutorService executorService= Executors.newSingleThreadExecutor();
+        executorService.execute(()->{
+            System.out.println("running");
+        });
+    }
+
 
 }
