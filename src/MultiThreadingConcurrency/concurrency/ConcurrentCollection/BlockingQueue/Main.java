@@ -1,4 +1,4 @@
-package src.MultiThreadingConcurrency.concurrency.BlockingQueue;
+package src.MultiThreadingConcurrency.concurrency.ConcurrentCollection.BlockingQueue;
 
 public class Main {
     public static void main(String[] args) {

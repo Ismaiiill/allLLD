@@ -1,4 +1,4 @@
-package src.MultiThreadingConcurrency.concurrency.BlockingQueue;
+package src.MultiThreadingConcurrency.concurrency.ConcurrentCollection.BlockingQueue;
 
 import java.util.LinkedList;
 import java.util.Queue;
