@@ -1,24 +1,34 @@
 package src.MultiThreadingConcurrency.practiceInterview.practice2;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException{
+
         Stack stack=new Stack(5);
         System.out.println(stack.isEmpty());
         System.out.println(stack.isFull());
-        System.out.println(stack.push(1));
-        System.out.println(stack.push(2));
-        System.out.println(stack.push(3));
-        System.out.println(stack.push(4));
-        System.out.println(stack.push(5));
-        System.out.println(stack.push(6));
+        Thread t1=new Thread(()->{
+            for (int i=1;i<=1011;i++){
+                try {
+                    System.out.println(stack.push(i));
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        Thread t2=new Thread(()->{
+            for (int i=1;i<=1010;i++){
+                try {
+                    System.out.println(stack.pop());
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
-
-        System.out.println(stack.pop());
-        System.out.println(stack.pop());
-        System.out.println(stack.pop());
-        System.out.println(stack.pop());
-        System.out.println(stack.pop());
-        System.out.println(stack.pop());
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
 
 
     }

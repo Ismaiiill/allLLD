@@ -3,6 +3,7 @@ package src.MultiThreadingConcurrency.practiceInterview.practice2;
 public class Stack {
     private int stackTop;
     private int[] arr;
+    private Object lock=new Object();
 
     public Stack(int size ){
         this.arr=new int[size];
@@ -17,35 +18,46 @@ public class Stack {
         return stackTop>=arr.length -1;
     }
 
-    public boolean push(int element){
-        if (isFull()){
-            return false;
+    public boolean push(int element) throws InterruptedException{
+
+        synchronized (lock) {
+            System.out.print(element+" pushing");
+            if (isFull()) {
+                System.out.println("no space avaliable ");
+                lock.wait();
+            }
+            try {
+//                Thread.sleep(1000);
+            } catch (Exception e) {
+                throw new RuntimeException("sldfjlsdf");
+            }
+            this.stackTop++;
+            this.arr[stackTop] = element;
+            lock.notifyAll();
+            return true;
         }
-        try {
-            Thread.sleep(1000);
-        }catch (Exception e){
-            throw new RuntimeException("sldfjlsdf");
-        }
-        this.stackTop++;
-        this.arr[stackTop]=element;
-        return true;
 
 
     }
-    public int pop(){
-        if (isEmpty()){
-            return Integer.MIN_VALUE;
-        }
-        try {
-            Thread.sleep(1000);
-        }catch (Exception e){
-            throw new RuntimeException("sldfjlsdf");
-        }
-        int obj=arr[stackTop];
-        arr[stackTop]=Integer.MIN_VALUE;
-        stackTop--;
-        return obj;
+    public int pop() throws InterruptedException {
+        synchronized (lock) {
+            System.out.print("poping ");
+            if (isEmpty()) {
+                System.out.println("full right now ");
+                lock.wait();
+            }
+            try {
+//                Thread.sleep(1000);
+            } catch (Exception e) {
+                throw new RuntimeException("sldfjlsdf");
+            }
+            int obj = arr[stackTop];
+            arr[stackTop] = Integer.MIN_VALUE;
+            stackTop--;
+            lock.notifyAll();
+            return obj;
 
+        }
     }
 
 }
